@@ -8,7 +8,6 @@ import Slider from "react-slick";
 import Spinner from "../components/Spinner";
 import BannerSkeletonLoader from "../components/BannerSkeletonLoader";
 import SliderSkeletonLoader from "../components/SliderSkeletonLoader";
-import CategorySkeletonLoader from "../components/CategorySkeletonLoader";
 
 // Create the function
 export function AddLibrary(urlOfTheLibrary) {
@@ -240,7 +239,7 @@ const Home = () => {
   // Get Image Sliders
   useEffect(() => {
     const localSlider = JSON.parse(localStorage.getItem("slider"));
-    if (localSlider) {
+    if (!localSlider) {
       setImageSliders(localSlider);
       setImageSliderLoading(false);
     } else {
@@ -417,7 +416,7 @@ const Home = () => {
       </div>
       {/*banner-area end */}
 
-      {/*Our Product Category */}
+      {/*our category start */}
       <div
         className="our-brand-area section-ptb"
         style={{ background: "#f9f9f9" }}
@@ -456,7 +455,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       {/*our-brand-area end */}
 
       {/*product-area start */}
@@ -611,7 +609,7 @@ const Home = () => {
             <div className="col-xl-9 m-auto">
               <div className="video-one__inner text-center">
                 {youtubeVideoLoading ? (
-                  <BannerSkeletonLoader />
+                  <Spinner />
                 ) : (
                   <iframe
                     width="100%"

@@ -28,7 +28,6 @@ const Header = () => {
 
   // Get All Parent with sub Categoies
   useEffect(() => {
-    setCategoryLoading(true);
     fetch(`${SERVER_URL}/parentCategories/allSubCategories`, {
       method: "GET", // or 'PUT'
       headers: {
@@ -225,6 +224,7 @@ const Header = () => {
             </div>
           </div>
         </div>
+
         {/* header-top end */}
         <div className="header-bottom-area header-sticky">
           <div className="container">
@@ -248,7 +248,15 @@ const Header = () => {
                         </Link>
                       </li>
                       {categoryLoading ? (
-                        <Spinner />
+                        [...Array(6)].map((__, ___) => {
+                          return (
+                            <li className={""}>
+                              <Link className="" to="">
+                                Loading
+                              </Link>
+                            </li>
+                          );
+                        })
                       ) : categories.length ? (
                         categories.map((cat, index) => {
                           return (
