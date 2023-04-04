@@ -65,7 +65,6 @@ const Header = () => {
         } else {
           toast.warning(data.message);
         }
-        console.log("All Child Category:", data);
       })
       .catch((error) => {
         toast.error(error);

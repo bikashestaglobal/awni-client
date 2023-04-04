@@ -86,7 +86,7 @@ const Footer = () => {
                       {parse(contactDetails.address || "") || ""}
                     </li>
                     <li>
-                      <i className="ion-ios-email-outline"></i> Email Us :
+                      <i className="ion-ios-email-outline"></i> Email Us :{" "}
                       <a
                         target={"_blank"}
                         href={`mailto:${contactDetails.email}`}
@@ -167,6 +167,9 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link to="/account/login">Login</Link>
+                    </li>
+                    <li>
+                      <Link to="/franchisee">Franchisee</Link>
                     </li>
                     {/*  <li><a href="career.html">Career</a></li>
                                 <li><a href="#">Returns & Exchanges</a></li>

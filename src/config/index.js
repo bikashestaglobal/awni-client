@@ -2,6 +2,8 @@ const hostname = window.location.hostname;
 
 // const SERVER_URL = "http://54.201.100.185:5000/api/v1";
 
+console.log(hostname);
+
 //
 const SERVER_URL =
   hostname == "localhost"

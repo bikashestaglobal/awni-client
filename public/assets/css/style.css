@@ -737,9 +737,10 @@ textarea:-ms-input-placeholder {
 ------------------------------------------*/
 /*---- Breadcrumb One ----*/
 .breadcrumb-area {
-  background: url("../images/bg/breadcrumb-bg.jpg") repeat scroll 0 0;
+  background: url("../images/bg/03.jpg") repeat scroll 0 0;
   text-align: center;
-  padding: 200px 0;
+  /* padding: 200px 0; */
+  padding: 120px 0;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -1748,7 +1749,8 @@ textarea:-ms-input-placeholder {
   border-radius: 25px;
   -webkit-box-shadow: 1px 2px 2px 2px #dddddd;
   box-shadow: 1px 2px 2px 2px #dddddd;
-  color: #303030;
+  /* color: #303030; */
+  color: #000080;
   font-size: 24px;
   left: -120px;
   padding: 15px 40px;
@@ -4326,15 +4328,22 @@ textarea:-ms-input-placeholder {
   margin-bottom: 20px;
   background: #f0f0f0;
   border: none;
-  height: 45px;
+  height: 50px;
   font-size: 14px;
   font-style: italic;
   padding: 10px;
   font-family: "Open Sans", sans-serif;
   color: #444;
 }
+
 .contact-form-warp textarea {
-  height: 148px;
+  height: 240px;
+}
+
+@media screen and (max-width: 480px) {
+  .contact-form-warp textarea {
+    height: 120px;
+  }
 }
 
 .contact-submit-btn .submit-btn {

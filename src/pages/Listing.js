@@ -10,6 +10,8 @@ import $ from "jquery";
 import { CustomerContext } from "../Routes";
 import "ion-rangeslider/css/ion.rangeSlider.min.css";
 import "ion-rangeslider/js/ion.rangeSlider.min.js";
+import ProductSkeletonLoader from "../components/ProductSkeletonLoader";
+import CategorySkeletonLoader from "../components/CategorySkeletonLoader";
 
 const Listing = () => {
   const { state, dispatch } = useContext(CustomerContext);
@@ -41,6 +43,7 @@ const Listing = () => {
   const [filterRange, setFilterRange] = useState(undefined);
   const [activeRange, setActiveRange] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
+  const [breacrumbBanner, setBreacrumbBanner] = useState();
 
   useEffect(() => {
     // ref.current.scrollIntoView({ behavior: "smooth" });
@@ -257,6 +260,29 @@ const Listing = () => {
     }
   }, [parCatSlug, subCatSlug]);
 
+  // Get Breadcrumbs Banner
+  useEffect(() => {
+    if (subCatSlug) {
+      fetch(`${SERVER_URL}/categories?cat_slug='${subCatSlug}`, {
+        method: "GET", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status == 200) {
+            setBreacrumbBanner(data?.body[0]?.breadcrumb_banner);
+          } else {
+            toast.warning(data.message);
+          }
+        })
+        .catch((error) => {
+          toast.warning(error);
+        });
+    }
+  }, [subCatSlug]);
+
   const rangeFilterHandler = (evt) => {
     evt.preventDefault();
     setUseRangeFilter(!useRangeFilter);
@@ -309,7 +335,14 @@ const Listing = () => {
   return (
     <>
       {/* breadcrumb-area start */}
-      <div className="breadcrumb-area section-ptb">
+      <div
+        className="breadcrumb-area section-ptb"
+        style={{
+          background: `url(${
+            breacrumbBanner || "/assets/images/bg/between-product-banner.jpg"
+          }) repeat scroll 0 0`,
+        }}
+      >
         <div className="container">
           <div className="row">
             <div className="col">
@@ -356,7 +389,9 @@ const Listing = () => {
                   <h4 className="title">CATEGORIES</h4>
                   <ul>
                     {categoriesLoading ? (
-                      <Spinner />
+                      [...Array(5)].map(function () {
+                        return <CategorySkeletonLoader />;
+                      })
                     ) : childCategories.length ? (
                       childCategories.map((category, index) => {
                         return (
@@ -468,7 +503,9 @@ const Listing = () => {
                   <h4 className="title">Ranges</h4>
                   <div className="sidebar-tag">
                     {rangeLoading ? (
-                      <Spinner />
+                      [...Array(5)].map(function () {
+                        return <CategorySkeletonLoader />;
+                      })
                     ) : allRanges.length ? (
                       allRanges.map((range, index) => {
                         return (
@@ -573,7 +610,18 @@ const Listing = () => {
                       <div className="shop-product-wrap">
                         <div className="row">
                           {productsLoading ? (
-                            <Spinner />
+                            <div className="col-md-12 text-center row">
+                              {[...Array(6)].map((_, __) => {
+                                return (
+                                  <div
+                                    className="col-lg-4 col-md-6"
+                                    key={`sk-${__}`}
+                                  >
+                                    <ProductSkeletonLoader />;
+                                  </div>
+                                );
+                              })}
+                            </div>
                           ) : products.length ? (
                             products.map((product, index) => {
                               return (

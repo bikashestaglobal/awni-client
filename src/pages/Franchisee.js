@@ -3,28 +3,28 @@ import { toast } from "react-toastify";
 import { SERVER_URL } from "../config";
 import parse from "html-react-parser";
 import Spinner from "../components/Spinner";
-import ExpCentreCard from "../components/ExpCentreCard";
 
-const Contact = () => {
+const Franchisee = () => {
   const [contactDetails, setContactDetails] = useState({});
   const [contactDetailsLoading, setContactDetailsLoading] = useState(true);
 
-  const [expCentres, setExpCentres] = useState([]);
-  const [expCentresLoading, setExpCentresLoading] = useState(true);
-
-  const [isAddLoaded, setIsAddLoaded] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    mobile: "",
     email: "",
-    message: "",
+    address: "",
+    occupation: "",
+    interested_city: "",
+    work_profile: "",
   });
 
   // Submit Handler
   const submitHandler = (evt) => {
-    setIsAddLoaded(false);
+    setLoading(true);
     evt.preventDefault();
 
-    fetch(SERVER_URL + "/enquiries", {
+    fetch(SERVER_URL + "/franchisee", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
@@ -36,7 +36,15 @@ const Contact = () => {
         (result) => {
           if (result.status === 200) {
             toast.success(result.message);
-            setFormData({ name: "", email: "", message: "", mobile: "" });
+            setFormData({
+              name: "",
+              mobile: "",
+              email: "",
+              address: "",
+              occupation: "",
+              interested_city: "",
+              work_profile: "",
+            });
           } else {
             const errorKeys = Object.keys(result.errors);
             errorKeys.forEach((key) => {
@@ -44,10 +52,10 @@ const Contact = () => {
             });
             toast.error(result.message);
           }
-          setIsAddLoaded(true);
+          setLoading(false);
         },
         (error) => {
-          setIsAddLoaded(true);
+          setLoading(false);
           toast.error(error);
         }
       );
@@ -81,31 +89,6 @@ const Contact = () => {
       })
       .catch((error) => {
         setContactDetailsLoading(false);
-        toast.warning(error);
-      });
-  }, []);
-
-  // Get Experience Centes details
-  useEffect(() => {
-    setExpCentresLoading(true);
-    fetch(`${SERVER_URL}/experienceCentres/`, {
-      method: "GET", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setExpCentresLoading(false);
-        if (data.status == 200) {
-          setExpCentres(data.body || []);
-        } else {
-          toast.warning(data.message);
-        }
-        // console.log("Success:", data);
-      })
-      .catch((error) => {
-        setExpCentresLoading(false);
         toast.warning(error);
       });
   }, []);
@@ -144,22 +127,17 @@ const Contact = () => {
       {/* main-search start */}
 
       {/* breadcrumb-area start */}
-      <div
-        className="breadcrumb-area section-ptb"
-        style={{
-          background: `url('/assets/images/bg/between-product-banner.jpg') repeat scroll 0 0`,
-        }}
-      >
+      <div className="breadcrumb-area section-ptb">
         <div className="container">
           <div className="row">
             <div className="col">
-              <h2 className="breadcrumb-title">Contact US</h2>
+              <h2 className="breadcrumb-title">Contact For Franchisee</h2>
               {/* breadcrumb-list start */}
               <ul className="breadcrumb-list">
                 <li className="breadcrumb-item">
                   <a href="index.html">Home</a>
                 </li>
-                <li className="breadcrumb-item active">Contact US</li>
+                <li className="breadcrumb-item active">franchisee</li>
               </ul>
               {/* breadcrumb-list end */}
             </div>
@@ -264,10 +242,11 @@ const Contact = () => {
             <div className="col-lg-6">
               <div className="contact-form-warp">
                 <div className="title">
-                  <h2>Enquire Now</h2>
+                  <h2>Franchisee Form</h2>
                 </div>
-                <form onSubmit={submitHandler}>
+                <form onSubmit={submitHandler} id="contact-form" method="post">
                   <div className="row">
+                    {/* Name */}
                     <div className="col-lg-10">
                       <input
                         type="text"
@@ -279,6 +258,7 @@ const Contact = () => {
                         placeholder="Your Name*"
                       />
                     </div>
+                    {/* Mobile */}
                     <div className="col-lg-10">
                       <input
                         type="text"
@@ -293,6 +273,7 @@ const Contact = () => {
                         placeholder="Mobile Number*"
                       />
                     </div>
+                    {/* Email */}
                     <div className="col-lg-10">
                       <input
                         type="email"
@@ -301,57 +282,92 @@ const Contact = () => {
                           setFormData({ ...formData, email: evt.target.value });
                         }}
                         value={formData.email}
-                        placeholder="E-Mail Address*"
+                        placeholder="Email Address*"
                       />
                     </div>
+
+                    {/* Address */}
                     <div className="col-lg-10">
-                      <textarea
-                        name="message"
-                        rows={8}
-                        value={formData.message}
+                      <input
+                        name="address"
+                        value={formData.address}
                         onChange={(evt) => {
                           setFormData({
                             ...formData,
-                            message: evt.target.value,
+                            address: evt.target.value,
                           });
                         }}
-                        placeholder="Your Message*"
-                      ></textarea>
+                        placeholder="Your full Address*"
+                      ></input>
+                    </div>
+
+                    {/* Current Occupation */}
+                    <div className="col-lg-10">
+                      <input
+                        type="text"
+                        name="occupation"
+                        onChange={(evt) => {
+                          setFormData({
+                            ...formData,
+                            occupation: evt.target.value,
+                          });
+                        }}
+                        value={formData.occupation}
+                        placeholder="Current Occupation*"
+                      />
+                    </div>
+
+                    {/* Intrested City */}
+                    <div className="col-lg-10">
+                      <input
+                        type="text"
+                        name="interested_city"
+                        onChange={(evt) => {
+                          setFormData({
+                            ...formData,
+                            interested_city: evt.target.value,
+                          });
+                        }}
+                        value={formData.interested_city}
+                        placeholder="City Interested*"
+                      />
+                    </div>
+
+                    {/* Current Work Profile */}
+                    <div className="col-lg-10">
+                      <input
+                        name="work_profile"
+                        value={formData.work_profile}
+                        onChange={(evt) => {
+                          setFormData({
+                            ...formData,
+                            work_profile: evt.target.value,
+                          });
+                        }}
+                        placeholder="Your Current Work Profile*"
+                      ></input>
                     </div>
                   </div>
                   <div className="contact-submit-btn">
-                    <button type="submit" className="submit-btn">
-                      Submit Query
+                    <button
+                      type="submit"
+                      className="submit-btn"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <div className="d-flex">
+                          <Spinner />
+                          <p className="px-1">Loading..</p>
+                        </div>
+                      ) : (
+                        "Apply"
+                      )}
                     </button>
                     <p className="form-messege"></p>
                   </div>
                 </form>
               </div>
             </div>
-          </div>
-
-          <div className="row pt-5">
-            <div className="col-md-12">
-              <h2 className="title">Experience Centre</h2>
-            </div>
-
-            {expCentresLoading ? (
-              <Spinner />
-            ) : expCentres.length ? (
-              expCentres.map((centre, index) => {
-                return (
-                  <ExpCentreCard
-                    name={centre.name || ""}
-                    address={centre.address || ""}
-                    google_map={centre.google_map || ""}
-                    mobile_1={centre.mobile_1 || ""}
-                    mobile_2={centre.mobile_2 || ""}
-                  />
-                );
-              })
-            ) : (
-              "Not Available"
-            )}
           </div>
         </div>
       </div>
@@ -361,4 +377,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Franchisee;

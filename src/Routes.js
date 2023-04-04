@@ -9,6 +9,7 @@ import { initialState, customerReducer } from "./reducer/CustomerReducer";
 import Login from "./pages/Login";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Franchisee from "./pages/Franchisee";
 import Home from "./pages/Home";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
@@ -30,6 +31,7 @@ const Routing = () => {
       <Route exact path={"/"} component={Home} />
       <Route exact path={"/about"} component={About} />
       <Route exact path={"/contact"} component={Contact} />
+      <Route exact path={"/franchisee"} component={Franchisee} />
       <Route exact path={"/product/:slug"} component={ProductDetails} />
       <Route exact path={"/account/login"} component={Login} />
 

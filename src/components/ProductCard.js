@@ -11,9 +11,9 @@ const ProductCard = ({ image, classes, name, mrp, selling_price, slug }) => {
       {/* single-product-wrap start */}
       <div className="single-product-wrap">
         <div className="product-image">
-          <Link to={`/product/${slug}`}>
+          <a href={`/product/${slug}`}>
             <img src={image || ""} alt="" />
-          </Link>
+          </a>
           {/* <div className="product-action">
                                     <a href="#" className="wishlist"><i className="icon-heart"></i></a>
                                     <a href="#" className="add-to-cart"><i className="icon-handbag"></i></a>
