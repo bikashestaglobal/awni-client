@@ -373,7 +373,7 @@ const Home = () => {
       {/*Hero Section End */}
 
       {/*banner-area start */}
-      <div className="banner-area">
+      <div className="banner-area mt-3">
         <div className="container-fluid">
           <div className="row">
             {bannerLoading ? (
@@ -391,7 +391,7 @@ const Home = () => {
                 return (
                   <div className="col-lg-4 col-md-6" key={index}>
                     {/* single-banner start */}
-                    <div className="single-banner mt-4">
+                    <div className="single-banner">
                       <div className="banner-bg">
                         <Link to={`${banner.webpage_url}`}>
                           <img src={banner.image || ""} alt="" />

@@ -111,7 +111,9 @@ const Header = () => {
   return (
     <>
       <ToastContainer />
-      <div className="header-top">
+      <div className="header-area sticky-top">
+        {/* header-top start */}
+        <div className="header-top">
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-md-8">
@@ -221,9 +223,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-      <div className="header-area sticky-top">
-        {/* header-top start */}
-       
 
         {/* header-top end */}
         <div className="header-bottom-area header-sticky">
@@ -334,7 +333,15 @@ const Header = () => {
                   </nav>
                 </div>
               </div>
-           
+              <div className="col-lg-1 col-md-1">
+                <div className="right-blok-box d-flex">
+                  {/* <div className="search-wrap">
+                    <Link to="#" className="trigger-search">
+                      <i className="icon-magnifier"></i>
+                    </Link>
+                  </div> */}
+                </div>
+              </div>
               <div className="col-lg-2 col-md-2">
                 <div className="logo">
                   <Link to="/">

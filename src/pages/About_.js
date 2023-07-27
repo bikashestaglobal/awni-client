@@ -174,7 +174,7 @@ const About = () => {
             <div className="row">
               <div className="col-xl-6">
                 <div className="about-one__img about-area">
-                  <div className="about-one__img1 d-none d-lg-block">
+                  <div className="about-one__img1">
                     <img
                       src={
                         aboutDetails.about_bg_image != "null"
@@ -282,7 +282,7 @@ const About = () => {
                     />
                   </div>
 
-                  <div className="mission-one__img-img2 wow slideInRight animated d-none d-lg-block">
+                  <div className="mission-one__img-img2 wow slideInRight animated">
                     <img
                       src={
                         aboutDetails.mission_fe_image != "null"
