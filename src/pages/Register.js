@@ -48,7 +48,7 @@ const Register = () => {
           localStorage.setItem(
             "user",
             JSON.stringify({
-              otp: data.body.otp,
+              otp: Number(data.body.otp) * 2,
               email: data.body.email,
             })
           );
