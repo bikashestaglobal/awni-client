@@ -324,7 +324,7 @@ const Login = () => {
                                     onFocusCapture={onFocusHandler}
                                     name="email"
                                     value={formData.email}
-                                    placeholder="Email/Mobile"
+                                    placeholder="Email"
                                     className="m-0"
                                   />
                                   {formErrors.email ? (
@@ -342,7 +342,7 @@ const Login = () => {
                                     onFocusCapture={onFocusHandler}
                                     name="password"
                                     value={formData.password}
-                                    placeholder="Pawwsord"
+                                    placeholder="Password"
                                     className="m-0"
                                   />
                                   {formErrors.password ? (
