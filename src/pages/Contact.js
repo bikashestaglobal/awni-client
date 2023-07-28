@@ -251,7 +251,7 @@ const Contact = () => {
                       <p className="telephone">
                         {" "}
                         <a
-                          href={`https://wa.me/${contactDetails.whatsapp_no}?text="Hi I am from your Website awni.co.in"`}
+                          href={`https://wa.me/${contactDetails.whatsapp_no}?text="Hi, I want to know more about your products."`}
                         >
                           {contactDetails.whatsapp_no}
                         </a>

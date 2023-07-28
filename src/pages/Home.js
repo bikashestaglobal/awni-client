@@ -602,13 +602,14 @@ const Home = () => {
       <section
         className="VSec"
         style={{
-          backgroundImage: "url(assets/images/video-v1-bg.jpg)",
-          backgroundSize: "cover",
+          // backgroundImage: "url(assets/images/video-v1-bg.jpg)",
+          // backgroundSize: "cover",
+          background: "#f7f7f7",
         }}
       >
         <div className="container">
           <div className="row">
-            <div className="col-xl-9 m-auto">
+            <div className="col-xl-10 m-auto">
               <div className="video-one__inner text-center">
                 {youtubeVideoLoading ? (
                   <BannerSkeletonLoader />

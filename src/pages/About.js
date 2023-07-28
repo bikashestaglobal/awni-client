@@ -5,6 +5,7 @@ import { SERVER_URL } from "../config";
 import parse from "html-react-parser";
 import Spinner from "../components/Spinner";
 import Slider from "react-slick/lib/slider";
+import WhyAwniCard from "../components/WhyAwniCard";
 // Create the function
 export function AddLibrary(urlOfTheLibrary) {
   const script = document.createElement("script");
@@ -456,13 +457,13 @@ const About = () => {
               <div className="col-lg-12">
                 {/*section-title start */}
                 <div className="section-title mb-5">
-                  <h2>Our Product Categories</h2>
+                  <h2>WHY AWNI</h2>
+                  {/* <h2>Our Product Categories</h2> */}
                 </div>
                 {/*section-title end */}
               </div>
 
-              <div className="col">
-                {/* <div className="our-brand-active"> */}
+              {/* <div className="col">
                 <div className="cat-slider">
                   <Slider {...settings3}>
                     {parCatLoading ? (
@@ -475,6 +476,27 @@ const About = () => {
                             slug={parCategory.slug}
                             name={parCategory.name}
                             image={parCategory.image}
+                          />
+                        );
+                      })
+                    )}
+                  </Slider>
+                </div>
+              </div> */}
+
+              <div className="col">
+                <div className="cat-slider">
+                  <Slider {...settings3}>
+                    {whyPointsLoading ? (
+                      <Spinner />
+                    ) : (
+                      whyPoints.map((whyPoint, index) => {
+                        return (
+                          <WhyAwniCard
+                            key={index}
+                            slug={whyPoint.slug}
+                            name={whyPoint.title}
+                            image={whyPoint.image}
                           />
                         );
                       })

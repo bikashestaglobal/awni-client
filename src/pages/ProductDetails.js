@@ -573,17 +573,19 @@ const ProductDetails = () => {
                         </li>
                         <li>
                           <a
-                            href={`https://api.whatsapp.com/send?phone=+91${contactDetails.whatsapp_no}&text=Hii, I am From your website. and product is : ${window.location.href}`}
+                            href={`https://api.whatsapp.com/send?phone=+91${contactDetails.whatsapp_no}&text=Hi, I want to know more about this product : ${window.location.href}`}
                             className="buy_now_btn"
                             style={{
                               backgroundColor: "#25d366",
                               color: "#fff",
+                              paddingTop: "10px",
+                              paddingBottom: "0px",
                             }}
                           >
                             {" "}
                             <i
                               className="fa fa-whatsapp"
-                              style={{ marginRight: "8px", fontSize: "20px" }}
+                              style={{ marginTop: "0px", fontSize: "30px" }}
                             ></i>
                           </a>
                         </li>
@@ -601,18 +603,34 @@ const ProductDetails = () => {
                           ) : allWishlists.some((item) => item.slug == slug) ? (
                             <a
                               title="Added to Wishlist"
-                              style={{ color: "white", background: "red" }}
+                              style={{
+                                color: "white",
+                                background: "red",
+                                paddingBottom: "2px",
+                              }}
                               onClick={removeWidhlistHandler}
                             >
-                              <i className="ion-heart"></i>
+                              <i
+                                className="ion-heart"
+                                style={{ fontSize: "30px" }}
+                              ></i>
                             </a>
                           ) : state && state.jwtToken ? (
-                            <a onClick={addWidhlistHandler}>
-                              <i className="ion-heart"></i>
+                            <a
+                              onClick={addWidhlistHandler}
+                              style={{ paddingBottom: "2px" }}
+                            >
+                              <i
+                                className="ion-heart"
+                                style={{ fontSize: "30px" }}
+                              ></i>
                             </a>
                           ) : (
                             <Link to={"/account/login"}>
-                              <i className="ion-heart"></i>
+                              <i
+                                className="ion-heart"
+                                style={{ fontSize: "30px" }}
+                              ></i>
                             </Link>
                           )}
                         </li>
